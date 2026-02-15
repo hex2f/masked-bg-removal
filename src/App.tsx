@@ -258,7 +258,7 @@ function App() {
     if (includeIdx >= 0) {
       setIncludePaths(prev => prev.filter((_, i) => i !== includeIdx));
       // Remove corresponding history entry
-      const histIdx = resultHistory.reduce((found, mode, i) => {
+      const histIdx = resultHistory.reduce((found, _, i) => {
         if (found >= 0) return found;
         const count = resultHistory.slice(0, i + 1).filter(m => m === 'include').length;
         return count === includeIdx + 1 ? i : -1;
@@ -270,7 +270,7 @@ function App() {
     const removeIdx = hitTest(removePaths);
     if (removeIdx >= 0) {
       setRemovePaths(prev => prev.filter((_, i) => i !== removeIdx));
-      const histIdx = resultHistory.reduce((found, mode, i) => {
+      const histIdx = resultHistory.reduce((found, _, i) => {
         if (found >= 0) return found;
         const count = resultHistory.slice(0, i + 1).filter(m => m === 'remove').length;
         return count === removeIdx + 1 ? i : -1;
